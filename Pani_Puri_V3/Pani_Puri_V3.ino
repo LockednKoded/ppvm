@@ -77,6 +77,10 @@ void setup() {
 
   pinMode(CD, OUTPUT);
   digitalWrite(CD, LOW);
+  
+  Main.write(MC);       //MF closed
+  Second.write(SC);     //SF closed
+  //delay(500);
 
   pinMode(Hole_Plus, OUTPUT);
   pinMode(Hole_Minus, OUTPUT);
@@ -129,9 +133,7 @@ void Rotate_PD() {
 
 void Puri()
 {
-  Main.write(MC);       //MF closed
-  Second.write(SC);     //SF closed
-  delay(500);
+  
 
 
   Main.write(MO);        //MF open
