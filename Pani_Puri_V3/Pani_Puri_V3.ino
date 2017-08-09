@@ -10,8 +10,10 @@ int CD = 11;
 int Hole_Plus = 8;
 int Hole_Minus = 7;
 
+// do we need this?
 int Aloo_Plus = 10;
 int Aloo_Minus = 9;
+
 int Aloo_Valve = 6;
 
 int pani = 5;
@@ -20,7 +22,7 @@ int Token = A0;  //Analog Read pin A0
 
 int LED = 13; //Token accepted LED
 
-int Button = 3;
+//int Button = 3; 
 
 /* For LCD Display*/
 /*  The circuit:
@@ -57,7 +59,10 @@ int button_count = 0;
 int token_status = 0;
 int mode = 0;
 int threshold = 95;  // LDR threshold
+
+//Token ka variable is for what?
 int coin = 31; //insert pin number for coin input signal
+
 int button1 = 32; //button to press for player 1
 int button2 = 33; //button to press for player 2
 int score1 = 0;
@@ -69,6 +74,7 @@ void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
 
+  //yeh button kelia hai
   pinMode(4,OUTPUT);
   digitalWrite(4,LOW);
   
@@ -208,7 +214,7 @@ void Pani() {
   lcd.clear();
   lcd.print("EAT, YOU MOFO");
 }
-
+ // kaunsa button ka variable hai yeh?
 int Button_Press()
   {
       int state=0;
