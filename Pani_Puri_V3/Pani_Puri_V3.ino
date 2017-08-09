@@ -124,17 +124,18 @@ void Rotate_CD() {
   digitalWrite(CD,LOW);
 }
 
-void Rotate_PD() {
+/*void Rotate_PD() {
   Serial.println("R_PD");
   digitalWrite(PD,HIGH);
   delay(1375);
   digitalWrite(PD,LOW);
-}
+} */
 
 void Puri()
 {
   
-
+  Serial.println("R_PD");
+  digitalWrite(PD,HIGH);        //Start Agitator
 
   Main.write(MO);        //MF open
   delay(2000);
@@ -144,6 +145,8 @@ void Puri()
   Second.write(SO);      //SF open
   delay(2000);
   Second.write(SC);     //SF closed
+
+  digitalWrite(PD,LOW);       // Stop Agitator
 }
 
 void Hole() {
@@ -334,7 +337,7 @@ void Dispense()
             h = 0;
             token_status=0;
             digitalWrite(LED,LOW);
-            Rotate_PD();
+            
             Serial.println("Next Plate");
           }
 
