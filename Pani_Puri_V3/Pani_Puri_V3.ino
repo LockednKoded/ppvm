@@ -7,8 +7,8 @@ int PD = 22;
 
 int CD = 23;
 
-int Hole_Plus = 24;
-int Hole_Minus = 25;
+int Hole_Plus = 34;
+int Hole_Minus = 35;
 
 // do we need this?
 int Aloo_Plus = 28;
@@ -18,12 +18,12 @@ int Aloo_Valve = 26;
 
 int pani = 30;
 
-int Token = A0;  //Analog Read pin A0
+int Token = 15;  //Analog Read pin A15
 
 int LED = 13; //Token accepted LED
 
 
-//int Button = 3; 
+//int Button = 3;
 
 /* For LCD Display*/
 /*  The circuit:
@@ -66,10 +66,10 @@ int threshold = 95;  // LDR threshold
 //Token ka variable is for what?
 int coin = 31; //insert pin number for coin input signal
 
-int button1_1 = 32; //button to press for player 1
+int button1 = 32; //button to press for player 1
 int button1_2 = 33;
-int button2_1 = 36; //button to press for player 2
-int button2_1 = 37;
+int button2 = 36; //button to press for player 2
+int button2_2 = 37;
 int score1 = 0;
 int score2 = 0;
 
@@ -82,6 +82,11 @@ void setup() {
   //yeh button kelia hai
   pinMode(4,OUTPUT);
   digitalWrite(4,LOW);
+
+  pinMode(button1_2,OUTPUT);
+  digitalWrite(button1_2,LOW);
+  pinMode(button2_2,OUTPUT);
+  digitalWrite(button2_2,LOW);
   
   pinMode(PD, OUTPUT);
   digitalWrite(PD, LOW);
@@ -111,8 +116,10 @@ void setup() {
   pinMode(LED,OUTPUT);
   digitalWrite(LED,LOW);
 
-  pinMode(Button, INPUT);
-  digitalWrite(Button, HIGH);
+  pinMode(button1, INPUT);
+  digitalWrite(button1, LOW);
+  pinMode(button2, INPUT);
+  digitalWrite(button2, LOW);
 
   pinMode(coin,INPUT);
   digitalWrite(coin,LOW);
@@ -219,14 +226,14 @@ void Pani() {
   lcd.clear();
   lcd.print("EAT, YOU MOFO");
 }
- // kaunsa button ka variable hai yeh?
-int Button_Press()
+ // for rebouncing function
+int Button_Press(int pin)
   {
       int state=0;
-      if(digitalRead(Button)==LOW)
+      if(digitalRead(pin)==LOW)
       {
         delay(10);
-        if(digitalRead(Button)==LOW)
+        if(digitalRead(pin)==LOW)
         {
            state=1;
            button_count++;
@@ -247,13 +254,13 @@ int Token_Accept() {
 
   if(ldrstatus<=threshold) // <= threshold value
     {
-      Serial.println("T_Yes");
+      Serial.println("T_Yes: ldrstatus "+ldrstatus);
       digitalWrite(LED,HIGH);
       return 1;
     }
   else
     {
-      //Serial.println("T_No");
+      //Serial.println("T_No: ldrstatus "+ldrstatus);
       digitalWrite(LED,LOW);
       return 0;
     }
@@ -261,17 +268,24 @@ int Token_Accept() {
 
 int Select_Mode()
 {
+  int s1 = 0;
+  int s2 = 0;
   lcd.print("Press button1 for single mode, button2 for multiplayer mode");
     for(int i = 0; i<36; i++)
     {
       lcd.scrollDisplayLeft();
       delay(200);
+      s1 = Button_Press(button1);
+      s2 = Button_Press(button2);
+
+      if(s1 || s2)
+          break;      
     }
 
-    if(digitalRead(button1))
+    if(s1)
       return 1;
 
-    else if(digitalRead(button2))
+    else if(s2)
       return 2;
 }
 
@@ -307,7 +321,7 @@ void Startup() {
 
 void Dispense()
 {
-      if(Button_Press())
+      if(Button_Press(button1))
       {
         Serial.print("button_count=");
         Serial.println(button_count);
@@ -372,6 +386,7 @@ void Disp_Score()
 void Multiplayer()
 {
   score1 = score2 = 0;
+  int checkcoin = 0;
   Disp_Score();
   do{
             
@@ -379,13 +394,13 @@ void Multiplayer()
             digitalWrite(button1, LOW);
             digitalWrite(button2, LOW); 
       
-            if(digitalRead(button1) == HIGH )
+            if(Button_Press(button1))
             { 
               score1++;
               Dispense();
             }
             
-            else if(digitalRead(button2) == HIGH )
+            else if(Button_Press(button2))
             {
               score2++;
               Dispense();
@@ -393,15 +408,17 @@ void Multiplayer()
             }while((score1+score2)%10);
       lcd.clear();
       lcd.setCursor(0, 0);
+      checkcoin = 0;
       lcd.print("Insert coin to");
       lcd.setCursor(0, 1);
       lcd.print("continue: ");
       for(int i = 5; i>=0; i++)
       {
         lcd.print(i+" ");
+        checkcoin = Token_Accept();
         delay(1000);
       }
-    }while(digitalRead(coin) == HIGH );
+    }while(checkcoin);
     lcd.clear();
     lcd.print("GAME OVER");
     delay(2000);
