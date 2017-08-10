@@ -3,24 +3,25 @@
 
 /* PIN ASSIGNMENT  */
 
-int PD = 12;
+int PD = 22;
 
-int CD = 11;
+int CD = 23;
 
-int Hole_Plus = 8;
-int Hole_Minus = 7;
+int Hole_Plus = 24;
+int Hole_Minus = 25;
 
 // do we need this?
-int Aloo_Plus = 10;
-int Aloo_Minus = 9;
+int Aloo_Plus = 28;
+int Aloo_Minus = 29;
 
-int Aloo_Valve = 6;
+int Aloo_Valve = 26;
 
-int pani = 5;
+int pani = 30;
 
 int Token = A0;  //Analog Read pin A0
 
 int LED = 13; //Token accepted LED
+
 
 //int Button = 3; 
 
@@ -41,11 +42,13 @@ int LED = 13; //Token accepted LED
 */
 
 // initialize the library with the numbers of the interface pins
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+LiquidCrystal lcd(38, 39, 40, 41, 42, 43);
 
 /*Servo initialization*/
   Servo Main;
   Servo Second;
+  int Main_pin = 2;
+  int Sec_pin = 3; 
   int MO = 0;
   int MC = 90;
   int SO = 0;
@@ -63,8 +66,10 @@ int threshold = 95;  // LDR threshold
 //Token ka variable is for what?
 int coin = 31; //insert pin number for coin input signal
 
-int button1 = 32; //button to press for player 1
-int button2 = 33; //button to press for player 2
+int button1_1 = 32; //button to press for player 1
+int button1_2 = 33;
+int button2_1 = 36; //button to press for player 2
+int button2_1 = 37;
 int score1 = 0;
 int score2 = 0;
 
@@ -116,8 +121,8 @@ void setup() {
 
   Serial.begin(9600);
 
-  Main.attach(9);
-  Second.attach(10);
+  Main.attach(Main_pin);
+  Second.attach(Sec_pin);
 
 }
 

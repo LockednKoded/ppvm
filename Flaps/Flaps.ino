@@ -2,6 +2,8 @@
 
   Servo Main;
   Servo Second;
+  int Main_pin = 2;
+  int Sec_pin = 3; 
   int MO = 0;
   int MC = 90;
   int SO = 0;
@@ -9,8 +11,8 @@
   
 void setup() {
   // put your setup code here, to run once:
-  Main.attach(9);
-  Second.attach(10);
+  Main.attach(Main_pin);
+  Second.attach(Sec_pin);
 
   Main.write(MC);       //MF closed
   Second.write(SC);     //SF closed
