@@ -20,7 +20,7 @@ int Aloo_Valve = 26;
 
 int pani = 30;
 
-int Token = A15;  //Analog Read pin A15
+int Token = 15;  //Analog Read pin A15
 
 int LED = 13; //Token accepted LED
 
@@ -170,15 +170,7 @@ void Rotate_CD() {
   digitalWrite(CD,LOW);
 }
 
-/*void Rotate_PD() {
-  Serial.println("R_PD");
-  digitalWrite(PD,HIGH);
-  delay(1375);
-  digitalWrite(PD,LOW);
-} */
-
-void Puri()
-{
+void Puri() {
 
   Serial.println("R_PD");
   digitalWrite(PD,HIGH);        //Start Agitator
@@ -295,8 +287,7 @@ int Token_Accept() {
     }
 }
 
-int Select_Mode()
-{
+int Select_Mode() {
   int s1 = 0;
   int s2 = 0;
   lcd.print("Press button1 for single mode, button2 for multiplayer mode");
@@ -348,8 +339,7 @@ void Startup() {
     h=5;
 }
 
-void Dispense()
-{
+void Dispense() {
       if(Button_Press(button1))
       {
         Serial.print("button_count=");
@@ -399,8 +389,7 @@ void Dispense()
       }
 }
 
-void Disp_Score()
-{
+void Disp_Score() {
   lcd.clear();
   lcd.setCursor(0, 0);  // top left
   lcd.print("HOME");
@@ -412,8 +401,7 @@ void Disp_Score()
   lcd.print(score2);
 }
 
-void Multiplayer()
-{
+void Multiplayer() {
   score1 = score2 = 0;
   int checkcoin = 0;
   Disp_Score();

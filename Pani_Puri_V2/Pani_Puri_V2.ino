@@ -13,7 +13,7 @@ int Aloo_Valve = 6;
 
 int pani = 5;
 
-int Token = A0;  //Analog Read pin A0
+int Token = 0;  //Analog Read pin A0
 
 int LED = 13; //Token accepted LED
 
@@ -30,7 +30,7 @@ void setup() {
 
   pinMode(4,OUTPUT);
   digitalWrite(4,LOW);
-  
+
   pinMode(PD, OUTPUT);
   digitalWrite(PD, LOW);
 
@@ -64,7 +64,7 @@ void setup() {
 
 void Rotate_CD() {
   delay(500);
-  
+
   Serial.println("R_CD");
   digitalWrite(CD,HIGH);
   delay(545);
@@ -189,7 +189,7 @@ void Startup() {
 }
 
 void loop() {
-  
+
   if (token_status==0) {
     token_status = Token_Accept();
   }
@@ -241,7 +241,7 @@ void loop() {
             Serial.println("Next Plate");
           }
 
-      
+
       }
   }
 
