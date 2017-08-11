@@ -425,11 +425,11 @@ void Disp_Score() {
   lcd.clear();
   lcd.setCursor(0, 0);  // top left
   lcd.print("HOME");
-  lcd.setCursor(15, 0);  //top right
+  lcd.setCursor(10, 0);  //top right
   lcd.print("AWAY");
   lcd.setCursor(0, 1);  //bottom left
   lcd.print(score1);
-  lcd.setCursor(15, 1);  //bottom right
+  lcd.setCursor(10, 1);  //bottom right
   lcd.print(score2);
 }
 
