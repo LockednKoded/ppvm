@@ -83,11 +83,11 @@ void setup() {
 
   //for lcd 220 ohm
   pinMode(7, OUTPUT);
-  analogWrite(7, 125);
+  analogWrite(7, 50);
 
   //for lcd pot
   pinMode(10, OUTPUT);
-  analogWrite(10, 125);
+  analogWrite(10, 10);
 
   pinMode(6, OUTPUT);
   digitalWrite(6, LOW);
