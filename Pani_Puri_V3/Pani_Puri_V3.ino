@@ -1,6 +1,8 @@
 #include <LiquidCrystal.h>
 #include <Servo.h>
 
+
+
 /* PIN ASSIGNMENT  */
 
 int PD = 22;
@@ -42,13 +44,13 @@ int LED = 13; //Token accepted LED
 */
 
 // initialize the library with the numbers of the interface pins
-LiquidCrystal lcd(38, 39, 40, 41, 42, 43);
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 /*Servo initialization*/
   Servo Main;
   Servo Second;
-  int Main_pin = 2;
-  int Sec_pin = 3; 
+  int Main_pin = 8;
+  int Sec_pin = 9; 
   int MO = 0;
   int MC = 90;
   int SO = 0;
@@ -78,6 +80,22 @@ void setup() {
 
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
+
+  pinMode(6, OUTPUT);
+  digitalWrite(6, LOW);
+
+  pinMode(7, OUTPUT);
+  analogWrite(7, 125);
+
+  pinMode(10, OUTPUT);
+  analogWrite(10, 125);
+
+  pinMode(53, OUTPUT);
+  digitalWrite(53, LOW);
+  pinMode(54, OUTPUT);
+  digitalWrite(54, HIGH);
+  pinMode(51, OUTPUT);
+  digitalWrite(51, LOW);
 
   //yeh button kelia hai
   pinMode(4,OUTPUT);
@@ -429,7 +447,8 @@ void Multiplayer()
 void loop() {
   
   if (token_status==0) {
-    token_status = Token_Accept();
+
+     token_status = Token_Accept();
   }
 
   if(token_status==1)
