@@ -20,7 +20,7 @@ int Aloo_Valve = 26;
 
 int pani = 30;
 
-int Token = 15;  //Analog Read pin A15
+int Token = A15;  //Analog Read pin A15
 
 int LED = 13; //Token accepted LED
 
@@ -244,7 +244,8 @@ void Pani() {
   lcd.clear();
   lcd.print("EAT, YOU MOFO");
 }
- // for rebouncing function
+
+ // for debouncing function
 int Button_Press(int pin)
   {
       int state=0;
