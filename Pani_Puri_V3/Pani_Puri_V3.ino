@@ -59,7 +59,7 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 /* Other Variables */
 
-int p = 0 , a = 0, h = 0;  //function counters.
+int p = 0 , a = 0, h = 0, pu = 0;  //function counters.
 int button_count = 0;
 int token_status = 0;
 int mode = 0;
@@ -357,56 +357,68 @@ void Startup() {
     p=2;
     a=4;
     h=5;
+    pu=6;
 }
 
 void Dispense() {
       if(Button_Press(button1))
-      {
-        Serial.print("button_count=");
-        Serial.println(button_count);
+        {
+          Serial.print("button_count=");
+          Serial.println(button_count);
 
-        if(button_count == 1)
-          {
-            Startup();
-          }
+          if(button_count == 1)
+            {
+              Startup();
+            }
 
-        if(button_count<=6 && button_count >1)
-          {
-            if(p<=6)
-              {
-                Pani();
-                p++;
-              }
-
-            Rotate_CD();
-
-            if(a<=6)
-              {
-                Aloo();
-                a++;
-              }
-
-            if(h<=6)
-              {
-                Hole();
-                h++;
-              }
-          }
-
-        if(button_count == 6)
-          {
-            button_count=0;
-            p = 0;
-            a = 0;
-            h = 0;
-            token_status=0;
-            digitalWrite(LED,LOW);
-
-            Serial.println("Next Plate");
-          }
+          if(button_count<=6 && button_count >1)
+            {
+              if(p<=6)
+                {
+                  Pani();
+                  p++;
+                }
 
 
-      }
+              Rotate_CD();
+
+              if(a<=6)
+                {
+                  Aloo();
+                  a++;
+                }
+
+              if(h<=6)
+                {
+                  Hole();
+                  h++;
+                }
+
+              if(pu<=6)
+                {
+                  Puri();
+                  pu++;
+                }
+            }
+
+          if(button_count == 6)
+            {
+              button_count=0;
+              p = 0;
+              a = 0;
+              h = 0;
+              pu = 0;
+              token_status=0;
+              //digitalWrite(LED,LOW);
+
+              lcd.clear();
+              lcd.print("That's all folks!")
+
+              Serial.println("Next Plate");
+            }
+
+
+        }
 }
 
 void Disp_Score() {
