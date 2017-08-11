@@ -160,7 +160,7 @@ void setup() {
 
   Serial.begin(9600);
 
-  Serial.println("Everything is setup!")
+  Serial.println("Everything is setup!");
   lcd.clear();
   lcd.print("Good to go!");
 }
@@ -412,7 +412,7 @@ void Dispense() {
               //digitalWrite(LED,LOW);
 
               lcd.clear();
-              lcd.print("That's all folks!")
+              lcd.print("That's all folks!");
 
               Serial.println("Next Plate");
             }
