@@ -437,11 +437,10 @@ void Multiplayer() {
   score1 = score2 = 0;
   int checkcoin = 0;
   Disp_Score();
+
   do{
 
       do{
-            digitalWrite(button1, LOW);
-            digitalWrite(button2, LOW);
 
             if(Button_Press(button1))
             {
@@ -450,23 +449,27 @@ void Multiplayer() {
             }
 
             else if(Button_Press(button2))
-            {
-              score2++;
-              Dispense();
-            }
-            }while((score1+score2)%10);
+              {
+                score2++;
+                Dispense();
+              }
+
+        }while((score1+score2)%10);
+
       lcd.clear();
       lcd.setCursor(0, 0);
       checkcoin = 0;
       lcd.print("Insert coin to");
       lcd.setCursor(0, 1);
       lcd.print("continue: ");
-      for(int i = 5; i>=0; i++)
-      {
-        lcd.print(i+" ");
-        checkcoin = Token_Accept();
-        delay(1000);
-      }
+
+      int i = 5000;
+      while((i>=0) && !(checkcoin = Token_Accept()) )
+        {
+          lcd.print((i/1000)+" ");
+          i--;
+          delay(1);
+        }
     }while(checkcoin);
     lcd.clear();
     lcd.print("GAME OVER");
