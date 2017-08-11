@@ -112,6 +112,9 @@ void setup() {
   pinMode(CD, OUTPUT);
   digitalWrite(CD, LOW);
 
+  Main.attach(Main_pin);
+  Second.attach(Sec_pin);
+
   Main.write(MC);       //MF closed
   Second.write(SC);     //SF closed
   //delay(500);
@@ -146,8 +149,7 @@ void setup() {
 
   Serial.begin(9600);
 
-  Main.attach(Main_pin);
-  Second.attach(Sec_pin);
+
 
 }
 
