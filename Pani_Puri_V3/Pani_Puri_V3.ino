@@ -50,7 +50,7 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
   Servo Main;
   Servo Second;
   int Main_pin = 8;
-  int Sec_pin = 9; 
+  int Sec_pin = 9;
   int MO = 0;
   int MC = 90;
   int SO = 0;
@@ -66,7 +66,7 @@ int mode = 0;
 int threshold = 95;  // LDR threshold
 
 //Token ka variable is for what?
-int coin = 31; //insert pin number for coin input signal
+//int coin = 31; //insert pin number for coin input signal
 
 int button1 = 32; //button to press for player 1
 int button1_2 = 33;
@@ -105,13 +105,13 @@ void setup() {
   digitalWrite(button1_2,LOW);
   pinMode(button2_2,OUTPUT);
   digitalWrite(button2_2,LOW);
-  
+
   pinMode(PD, OUTPUT);
   digitalWrite(PD, LOW);
 
   pinMode(CD, OUTPUT);
   digitalWrite(CD, LOW);
-  
+
   Main.write(MC);       //MF closed
   Second.write(SC);     //SF closed
   //delay(500);
@@ -135,9 +135,9 @@ void setup() {
   digitalWrite(LED,LOW);
 
   pinMode(button1, INPUT);
-  digitalWrite(button1, LOW);
+  digitalWrite(button1, HIGH);
   pinMode(button2, INPUT);
-  digitalWrite(button2, LOW);
+  digitalWrite(button2, HIGH);
 
   pinMode(coin,INPUT);
   digitalWrite(coin,LOW);
@@ -153,7 +153,7 @@ void setup() {
 
 void Rotate_CD() {
   delay(500);
-  
+
   Serial.println("R_CD");
   digitalWrite(CD,HIGH);
   delay(545);
@@ -169,7 +169,7 @@ void Rotate_CD() {
 
 void Puri()
 {
-  
+
   Serial.println("R_PD");
   digitalWrite(PD,HIGH);        //Start Agitator
 
@@ -298,7 +298,7 @@ int Select_Mode()
       s2 = Button_Press(button2);
 
       if(s1 || s2)
-          break;      
+          break;
     }
 
     if(s1)
@@ -381,11 +381,11 @@ void Dispense()
             h = 0;
             token_status=0;
             digitalWrite(LED,LOW);
-            
+
             Serial.println("Next Plate");
           }
 
-      
+
       }
 }
 
@@ -399,7 +399,7 @@ void Disp_Score()
   lcd.setCursor(0, 1);  //bottom left
   lcd.print(score1);
   lcd.setCursor(15, 1);  //bottom right
-  lcd.print(score2);    
+  lcd.print(score2);
 }
 
 void Multiplayer()
@@ -408,22 +408,22 @@ void Multiplayer()
   int checkcoin = 0;
   Disp_Score();
   do{
-            
+
       do{
             digitalWrite(button1, LOW);
-            digitalWrite(button2, LOW); 
-      
+            digitalWrite(button2, LOW);
+
             if(Button_Press(button1))
-            { 
+            {
               score1++;
               Dispense();
             }
-            
+
             else if(Button_Press(button2))
             {
               score2++;
               Dispense();
-            } 
+            }
             }while((score1+score2)%10);
       lcd.clear();
       lcd.setCursor(0, 0);
@@ -442,11 +442,11 @@ void Multiplayer()
     lcd.print("GAME OVER");
     delay(2000);
     Disp_Score();
-  
+
 }
 
 void loop() {
-  
+
   if (token_status==0) {
 
      token_status = Token_Accept();
@@ -455,12 +455,12 @@ void loop() {
   if(token_status==1)
   {
       mode = Select_Mode();
-  
+
       if(mode == 1)  //single pani puri eater mode
       {
         Dispense();
       }
-  
+
       else if(mode == 2)  //multi player mode
       {
         Multiplayer();
