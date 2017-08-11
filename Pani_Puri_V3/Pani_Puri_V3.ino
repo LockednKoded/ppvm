@@ -77,18 +77,20 @@ int score2 = 0;
 
 
 void setup() {
-
-  // set up the LCD's number of columns and rows:
+  //LCD Setup
+  // set up the LCD's number of columns and rows
   lcd.begin(16, 2);
 
-  pinMode(6, OUTPUT);
-  digitalWrite(6, LOW);
-
+  //for lcd 220 ohm
   pinMode(7, OUTPUT);
   analogWrite(7, 125);
 
+  //for lcd pot
   pinMode(10, OUTPUT);
   analogWrite(10, 125);
+
+  pinMode(6, OUTPUT);
+  digitalWrite(6, LOW);
 
   pinMode(53, OUTPUT);
   digitalWrite(53, LOW);
@@ -97,33 +99,43 @@ void setup() {
   pinMode(51, OUTPUT);
   digitalWrite(51, LOW);
 
-  //yeh button kelia hai
+  //yeh button kelia tha
+  /*
   pinMode(4,OUTPUT);
-  digitalWrite(4,LOW);
+  digitalWrite(4,LOW); */
 
+  // button setup
   pinMode(button1_2,OUTPUT);
   digitalWrite(button1_2,LOW);
   pinMode(button2_2,OUTPUT);
   digitalWrite(button2_2,LOW);
 
+  pinMode(button1, INPUT);
+  digitalWrite(button1, HIGH);
+  pinMode(button2, INPUT);
+  digitalWrite(button2, HIGH);
+
+  //Agitator setup
   pinMode(PD, OUTPUT);
   digitalWrite(PD, LOW);
 
+  //CD Setup
   pinMode(CD, OUTPUT);
   digitalWrite(CD, LOW);
 
+  // Servo setup
   Main.attach(Main_pin);
   Second.attach(Sec_pin);
-
   Main.write(MC);       //MF closed
   Second.write(SC);     //SF closed
-  //delay(500);
 
+  // Pricker setup
   pinMode(Hole_Plus, OUTPUT);
   pinMode(Hole_Minus, OUTPUT);
   digitalWrite(Hole_Plus,LOW);
   digitalWrite(Hole_Minus,LOW);
 
+  // Aloo system setup
   pinMode(Aloo_Plus,OUTPUT);
   pinMode(Aloo_Minus,OUTPUT);
   pinMode(Aloo_Valve,OUTPUT);
@@ -131,26 +143,22 @@ void setup() {
   digitalWrite(Aloo_Minus,LOW);
   digitalWrite(Aloo_Valve,LOW);
 
+  //Pani valve setup
   pinMode(pani,OUTPUT);
   digitalWrite(pani,LOW);
 
+  //LED Setup
   pinMode(LED,OUTPUT);
   digitalWrite(LED,LOW);
 
-  pinMode(button1, INPUT);
-  digitalWrite(button1, HIGH);
-  pinMode(button2, INPUT);
-  digitalWrite(button2, HIGH);
-
+  /*
   pinMode(coin,INPUT);
   digitalWrite(coin,LOW);
   pinMode(mode,INPUT);
   digitalWrite(mode,LOW);
+  */
 
   Serial.begin(9600);
-
-
-
 }
 
 void Rotate_CD() {
