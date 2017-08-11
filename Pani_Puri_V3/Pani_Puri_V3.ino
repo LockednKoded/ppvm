@@ -309,15 +309,17 @@ int Select_Mode() {
   int s1 = 0;
   int s2 = 0;
   lcd.print("Press button1 for single mode, button2 for multiplayer mode");
-    for(int i = 0; i<36; i++)
+
+    //for(int i = 0; i<36; i++)
+    while(!(s1 || s2))
     {
       lcd.scrollDisplayLeft();
       delay(200);
       s1 = Button_Press(button1);
       s2 = Button_Press(button2);
 
-      if(s1 || s2)
-          break;
+      /*if(s1 || s2)
+          break; */
     }
 
     if(s1)
