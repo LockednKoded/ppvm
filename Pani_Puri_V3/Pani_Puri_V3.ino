@@ -161,12 +161,17 @@ void setup() {
   Serial.begin(9600);
 
   Serial.println("Everything is setup!")
+  lcd.clear();
+  lcd.print("Good to go!");
 }
 
 void Rotate_CD() {
   delay(500);
 
   Serial.println("Rotate CD");
+  lcd.clear();
+  lcd.print("Rotate CD");
+
   digitalWrite(CD,HIGH);
   delay(545);
   digitalWrite(CD,LOW);
@@ -175,6 +180,9 @@ void Rotate_CD() {
 void Puri() {
 
   Serial.println("Agitator Begins");
+  lcd.clear();
+  lcd.print("Puri");
+
   digitalWrite(PD,HIGH);        //Start Agitator
 
   Serial.println("Flap Sequence");
@@ -194,6 +202,7 @@ void Puri() {
 void Hole() {
 
   Serial.println("H");
+
   lcd.clear();
   lcd.print("PRICK");
 
@@ -223,7 +232,9 @@ void Aloo() {
 
   lcd.clear();
   lcd.print("ALOO");
+
   Serial.println("A_V");
+
   digitalWrite(Aloo_Valve,HIGH);
   delay(100);
   digitalWrite(Aloo_Valve,LOW);
@@ -242,13 +253,15 @@ void Pani() {
 
   lcd.clear();
   lcd.print("PAANI");
+
   Serial.println("P_On");
   digitalWrite(pani, HIGH);
   delay(8000);
   digitalWrite(pani, LOW );
   Serial.println("P_Off");
+
   lcd.clear();
-  lcd.print("EAT, YOU MOFO");
+  lcd.print("Ready!");
 }
 
  // for debouncing function
@@ -272,6 +285,7 @@ int Token_Accept() {
 
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
+  lcd.clear();
   lcd.setCursor(0, 1);
   lcd.print("Insert Coin to eat");
 
