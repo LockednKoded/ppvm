@@ -159,12 +159,14 @@ void setup() {
   */
 
   Serial.begin(9600);
+
+  Serial.println("Everything is setup!")
 }
 
 void Rotate_CD() {
   delay(500);
 
-  Serial.println("R_CD");
+  Serial.println("Rotate CD");
   digitalWrite(CD,HIGH);
   delay(545);
   digitalWrite(CD,LOW);
@@ -172,9 +174,10 @@ void Rotate_CD() {
 
 void Puri() {
 
-  Serial.println("R_PD");
+  Serial.println("Agitator Begins");
   digitalWrite(PD,HIGH);        //Start Agitator
 
+  Serial.println("Flap Sequence");
   Main.write(MO);        //MF open
   delay(2000);
   Main.write(MC);       //MF closed
@@ -185,6 +188,7 @@ void Puri() {
   Second.write(SC);     //SF closed
 
   digitalWrite(PD,LOW);       // Stop Agitator
+  Serial.println("Agitator Stops");
 }
 
 void Hole() {
