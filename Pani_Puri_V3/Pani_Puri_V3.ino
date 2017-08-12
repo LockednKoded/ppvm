@@ -49,10 +49,10 @@
     Servo Second;
     int Main_pin = 12;
     int Sec_pin = 11;
-    int MO = 0;
+    int MO = 20;
     int MC = 90;
-    int SO = 0;
-    int SC = 100;
+    int SO = 100;
+    int SC = 10;
 
   /* Other Variables */
 
@@ -63,6 +63,8 @@
   int threshold = 100;  // LDR threshold
 
   //Token ka variable is for what?
+  //int coin = 31; //insert pin number for coin input signal
+
   int button1 = 32; //button to press for player 1
   int button1_2 = 33;
   int button2 = 36; //button to press for player 2

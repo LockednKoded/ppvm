@@ -2,12 +2,12 @@
 
   Servo Main;
   Servo Second;
-  int Main_pin = 2;
-  int Sec_pin = 3; 
-  int MO = 0;
+  int Main_pin = 12;
+  int Sec_pin =11; 
+  int MO = 20;
   int MC = 90;
-  int SO = 0;
-  int SC = 100;
+  int SO = 100;
+  int SC = 10;
   
 void setup() {
   // put your setup code here, to run once:

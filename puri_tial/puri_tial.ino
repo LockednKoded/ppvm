@@ -35,8 +35,8 @@ void setup() {
 void Puri() {
 
   Serial.println("Agitator Begins");
-  lcd.clear();
-  lcd.print("Puri");
+  //lcd.clear();
+  //lcd.print("Puri");
 
   digitalWrite(PD,HIGH);        //Start Agitator
 
@@ -57,8 +57,10 @@ void Puri() {
 void loop() {
   // put your main code here, to run repeatedly:
 
+  Serial.println("Puri() function called");
   Puri();
-  Serial.println("Got your Puri??");
+  Serial.println("exited Puri() function");
   delay(10000);
+  Serial.println("TIME FOR NEXT PURI");
 
 }
