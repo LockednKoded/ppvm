@@ -431,7 +431,8 @@ void Dispense() {
              lcd.clear();
              lcd.print("Press B1 for");
              lcd.setCursor(0,1);
-             lcd.print("next puri");
+             lcd.print(" puri: ");
+             lcd.print(button_count +1);
           }
         }while(button_count<6);
 
@@ -447,6 +448,7 @@ void Dispense() {
             lcd.clear();
             lcd.print("That's all folks!");
             Serial.println("Next Plate");
+            delay(2000);
           }
 
       }
