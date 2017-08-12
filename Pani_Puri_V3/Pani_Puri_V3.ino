@@ -1,8 +1,6 @@
 #include <LiquidCrystal.h>
 #include <Servo.h>
 
-
-
 /* PIN ASSIGNMENT  */
 
 int PD = 22;
@@ -56,14 +54,13 @@ LiquidCrystal lcd(8,9,4,5,6,7);
   int SO = 0;
   int SC = 100;
 
-
 /* Other Variables */
 
 int p = 0 , a = 0, h = 0, pu = 0;  //function counters.
 int button_count = 0;
 int token_status = 0;
 int mode = 0;
-int threshold = 95;  // LDR threshold
+int threshold = analogRead(Token);  // LDR threshold
 
 //Token ka variable is for what?
 //int coin = 31; //insert pin number for coin input signal
@@ -81,13 +78,13 @@ int coin =0; //this is for showing the INSERT COIN TO BEGIN statement only once.
 void setup() {
   //LCD Setup
   // set up the LCD's number of columns and rows
-  
+
 
   pinMode(3, OUTPUT);
   digitalWrite(3, HIGH);
   pinMode(2,OUTPUT);
   digitalWrite(2,LOW);
-  
+
   //for lcd pot contrast pin Vo
   pinMode(10, OUTPUT);
   analogWrite(10, 110);
@@ -99,7 +96,7 @@ void setup() {
   // doesn't work need to connect to vcc connected servo instead
   pinMode(52, OUTPUT);
   digitalWrite(52, HIGH);
-  
+
   pinMode(51, OUTPUT);
   digitalWrite(51, LOW);
 
@@ -167,7 +164,7 @@ void setup() {
   Serial.begin(9600);
 
   Serial.println("Everything is setup!");
-  
+
   lcd.clear();
   lcd.print("Good to go!");
   delay(2000);
@@ -293,7 +290,7 @@ int Token_Accept() {
 
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
-/*  lcd.clear();
+  /*  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Insert Coin");
   lcd.setCursor(0,1);
@@ -319,7 +316,7 @@ int Token_Accept() {
 int Select_Mode() {
   int s1 = 0;
   int s2 = 0;
-  
+
   lcd.clear();
   lcd.print("B1 = Single");
   lcd.setCursor(0,1);
@@ -505,7 +502,7 @@ void loop() {
 
       coin=1;
     }
-    
+
   if (token_status==0) {
 
      token_status = Token_Accept();
