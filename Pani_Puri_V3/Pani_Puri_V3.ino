@@ -429,7 +429,7 @@ void Dispense() {
                     pu++;
                   }
               }
-          )while(button_count<6)
+          )while(button_count<6);
           
           if(button_count == 6)
             {
