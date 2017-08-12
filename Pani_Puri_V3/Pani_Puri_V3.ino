@@ -63,8 +63,6 @@
   int threshold = 100;  // LDR threshold
 
   //Token ka variable is for what?
-  //int coin = 31; //insert pin number for coin input signal
-
   int button1 = 32; //button to press for player 1
   int button1_2 = 33;
   int button2 = 36; //button to press for player 2
