@@ -472,13 +472,13 @@ void Multiplayer() {
             if(Button_Press(button1))
             {
               score1++;
-              Single_Puri()
+              Single_Puri();
             }
 
             else if(Button_Press(button2))
               {
                 score2++;
-                Single_Puri()
+                Single_Puri();
               }
 
         }while((score1+score2)%10);
