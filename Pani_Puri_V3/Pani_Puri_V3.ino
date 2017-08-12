@@ -60,7 +60,7 @@ int p = 0 , a = 0, h = 0, pu = 0;  //function counters.
 int button_count = 0;
 int token_status = 0;
 int mode = 0;
-int threshold = analogRead(Token);  // LDR threshold
+int threshold = 95;  // LDR threshold
 
 //Token ka variable is for what?
 //int coin = 31; //insert pin number for coin input signal
@@ -161,6 +161,7 @@ void setup() {
   digitalWrite(mode,LOW);
   */
 
+  threshold = analogRead(Token)-10;
   Serial.begin(9600);
 
   Serial.println("Everything is setup!");
