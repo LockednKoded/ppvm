@@ -394,12 +394,12 @@ void Dispense() {
               button_count++;
               Serial.print("button_count= ");
               Serial.println(button_count);
-  
+
            if(button_count == 1)
              {
                Startup();
              }
-  
+
             if(button_count<=6 && button_count >1)
               {
                 if(p<=6)
@@ -407,30 +407,30 @@ void Dispense() {
                     Pani();
                     p++;
                   }
-  
-  
+
+
                 Rotate_CD();
-  
+
                 if(a<=6)
                   {
                     Aloo();
                     a++;
                   }
-  
+
                 if(h<=6)
                   {
                     Hole();
                     h++;
                   }
-  
+
                 if(pu<=6)
                   {
                     Puri();
                     pu++;
                   }
               }
-          )while(button_count<6);
-          
+          }while(button_count<6);
+
           if(button_count == 6)
             {
               button_count=0;
