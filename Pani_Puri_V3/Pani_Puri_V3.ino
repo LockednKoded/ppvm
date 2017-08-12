@@ -427,12 +427,11 @@ void Dispense() {
                       Puri();
                       pu++;
                     }
-
-                   lcd.clear();
-                   lcd.print("Press B1 for");
-                   lcd.setCursor(0,1);
-                   lcd.print("next puri");
               }
+             lcd.clear();
+             lcd.print("Press B1 for");
+             lcd.setCursor(0,1);
+             lcd.print("next puri");
           }
         }while(button_count<6);
 
