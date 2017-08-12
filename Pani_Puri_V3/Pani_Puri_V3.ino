@@ -44,13 +44,13 @@ int LED = 13; //Token accepted LED
 */
 
 // initialize the library with the numbers of the interface pins
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+LiquidCrystal lcd(8,9,4,5,6,7);
 
 /*Servo initialization*/
   Servo Main;
   Servo Second;
-  int Main_pin = 8;
-  int Sec_pin = 9;
+  int Main_pin = 12;
+  int Sec_pin = 11;
   int MO = 0;
   int MC = 90;
   int SO = 0;
@@ -75,29 +75,35 @@ int button2_2 = 37;
 int score1 = 0;
 int score2 = 0;
 
+int coin =0; //this is for showing the INSERT COIN TO BEGIN statement only once.
+
 
 void setup() {
   //LCD Setup
   // set up the LCD's number of columns and rows
-  lcd.begin(16, 2);
+  
 
-  //for lcd 220 ohm
-  pinMode(7, OUTPUT);
-  analogWrite(7, 125);
-
-  //for lcd pot
+  pinMode(3, OUTPUT);
+  digitalWrite(3, HIGH);
+  pinMode(2,OUTPUT);
+  digitalWrite(2,LOW);
+  
+  //for lcd pot contrast pin Vo
   pinMode(10, OUTPUT);
-  analogWrite(10, 25);
+  analogWrite(10, 110);
 
-  pinMode(6, OUTPUT);
-  digitalWrite(6, LOW);
 
   pinMode(53, OUTPUT);
   digitalWrite(53, LOW);
-  pinMode(54, OUTPUT);
-  digitalWrite(54, HIGH);
+
+  // doesn't work need to connect to vcc connected servo instead
+  pinMode(52, OUTPUT);
+  digitalWrite(52, HIGH);
+  
   pinMode(51, OUTPUT);
   digitalWrite(51, LOW);
+
+  lcd.begin(16, 2);
 
   //yeh button kelia tha
   /*
@@ -161,8 +167,10 @@ void setup() {
   Serial.begin(9600);
 
   Serial.println("Everything is setup!");
+  
   lcd.clear();
   lcd.print("Good to go!");
+  delay(2000);
 }
 
 void Rotate_CD() {
@@ -285,15 +293,18 @@ int Token_Accept() {
 
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
-  lcd.clear();
-  lcd.setCursor(0, 1);
-  lcd.print("Insert Coin to eat");
+/*  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Insert Coin");
+  lcd.setCursor(0,1);
+  lcd.print("to begin!"); */
 
   int ldrstatus=analogRead(Token);
 
   if(ldrstatus<=threshold) // <= threshold value
     {
-      Serial.println("T_Yes: ldrstatus "+ldrstatus);
+      Serial.print("T_Yes: ldrstatus ");
+      Serial.println(ldrstatus);
       digitalWrite(LED,HIGH);
       return 1;
     }
@@ -308,13 +319,17 @@ int Token_Accept() {
 int Select_Mode() {
   int s1 = 0;
   int s2 = 0;
-  lcd.print("Press button1 for single mode, button2 for multiplayer mode");
+  
+  lcd.clear();
+  lcd.print("B1 = Single");
+  lcd.setCursor(0,1);
+  lcd.print("B2 = Multi");
 
     //for(int i = 0; i<36; i++)
     while(!(s1 || s2))
     {
-      lcd.scrollDisplayLeft();
-      delay(200);
+      /*lcd.scrollDisplayLeft();
+      delay(400); */
       s1 = Button_Press(button1);
       s2 = Button_Press(button2);
 
@@ -480,6 +495,17 @@ void Multiplayer() {
 
 void loop() {
 
+  if (coin ==0)
+    {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Insert Coin");
+      lcd.setCursor(0,1);
+      lcd.print("to begin!");
+
+      coin=1;
+    }
+    
   if (token_status==0) {
 
      token_status = Token_Accept();
@@ -492,11 +518,13 @@ void loop() {
       if(mode == 1)  //single pani puri eater mode
       {
         Dispense();
+        coin =0;
       }
 
       else if(mode == 2)  //multi player mode
       {
         Multiplayer();
+        coin =0;
       }
    }
 
