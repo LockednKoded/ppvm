@@ -7,12 +7,12 @@
 
   int CD = 23;
 
-  int Hole_Plus = 34;
-  int Hole_Minus = 35;
+  int Hole_Plus = 28;
+  int Hole_Minus = 29;
 
   // do we need this?
-  int Aloo_Plus = 28;
-  int Aloo_Minus = 29;
+  int Aloo_Plus = 34;
+  int Aloo_Minus = 35;
 
   int Aloo_Valve = 26;
 
@@ -60,7 +60,7 @@
   int button_count = 0;
   int token_status = 0;
   int mode = 0;
-  int threshold = 95;  // LDR threshold
+  int threshold = 100;  // LDR threshold
 
   //Token ka variable is for what?
   //int coin = 31; //insert pin number for coin input signal
@@ -161,7 +161,6 @@ void setup() {
   digitalWrite(mode,LOW);
   */
 
-  threshold = analogRead(Token)-10;
   Serial.begin(9600);
 
   Serial.println("Everything is setup!");
@@ -169,6 +168,11 @@ void setup() {
   lcd.clear();
   lcd.print("Good to go!");
   delay(2000);
+  
+  threshold = analogRead(Token) -20;
+  Serial.print("Threshold: ");
+  Serial.println(threshold);
+  delay(1000);
 }
 
 void Rotate_CD() {
