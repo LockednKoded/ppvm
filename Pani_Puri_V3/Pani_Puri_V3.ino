@@ -18,7 +18,7 @@
 
   int pani = 30;
 
-  int Token = 15;  //Analog Read pin A15
+  int Token = 0;  //Analog Read pin A15
 
   int LED = 13; //Token accepted LED
 
