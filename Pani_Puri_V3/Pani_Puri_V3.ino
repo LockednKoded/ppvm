@@ -387,47 +387,50 @@ void Single_Puri()
 }
 
 void Dispense() {
-      if(Button_Press(button1))
-        {
-          button_count++;
-          Serial.print("button_count= ");
-          Serial.println(button_count);
 
-          if(button_count == 1)
+      do{
+          if(Button_Press(button1))
             {
-              Startup();
-            }
-
-          if(button_count<=6 && button_count >1)
-            {
-              if(p<=6)
-                {
-                  Pani();
-                  p++;
-                }
-
-
-              Rotate_CD();
-
-              if(a<=6)
-                {
-                  Aloo();
-                  a++;
-                }
-
-              if(h<=6)
-                {
-                  Hole();
-                  h++;
-                }
-
-              if(pu<=6)
-                {
-                  Puri();
-                  pu++;
-                }
-            }
-
+              button_count++;
+              Serial.print("button_count= ");
+              Serial.println(button_count);
+  
+           if(button_count == 1)
+             {
+               Startup();
+             }
+  
+            if(button_count<=6 && button_count >1)
+              {
+                if(p<=6)
+                  {
+                    Pani();
+                    p++;
+                  }
+  
+  
+                Rotate_CD();
+  
+                if(a<=6)
+                  {
+                    Aloo();
+                    a++;
+                  }
+  
+                if(h<=6)
+                  {
+                    Hole();
+                    h++;
+                  }
+  
+                if(pu<=6)
+                  {
+                    Puri();
+                    pu++;
+                  }
+              }
+          )while(button_count<6)
+          
           if(button_count == 6)
             {
               button_count=0;
@@ -525,7 +528,9 @@ void loop() {
 
   if(token_status==1)
   {
-      mode = Select_Mode();
+
+      if(mode==0)
+        mode = Select_Mode();
 
       if(mode == 1)  //single pani puri eater mode
       {
