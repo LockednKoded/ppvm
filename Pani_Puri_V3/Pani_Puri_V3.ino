@@ -3,76 +3,76 @@
 
 /* PIN ASSIGNMENT  */
 
-int PD = 22;
+  int PD = 22;
 
-int CD = 23;
+  int CD = 23;
 
-int Hole_Plus = 34;
-int Hole_Minus = 35;
+  int Hole_Plus = 34;
+  int Hole_Minus = 35;
 
-// do we need this?
-int Aloo_Plus = 28;
-int Aloo_Minus = 29;
+  // do we need this?
+  int Aloo_Plus = 28;
+  int Aloo_Minus = 29;
 
-int Aloo_Valve = 26;
+  int Aloo_Valve = 26;
 
-int pani = 30;
+  int pani = 30;
 
-int Token = 15;  //Analog Read pin A15
+  int Token = 15;  //Analog Read pin A15
 
-int LED = 13; //Token accepted LED
+  int LED = 13; //Token accepted LED
 
 
-//int Button = 3;
+  //int Button = 3;
 
-/* For LCD Display*/
-/*  The circuit:
- * LCD RS pin to digital pin 12
- * LCD Enable pin to digital pin 11
- * LCD D4 pin to digital pin 5
- * LCD D5 pin to digital pin 4
- * LCD D6 pin to digital pin 3
- * LCD D7 pin to digital pin 2
- * LCD R/W pin to ground
- * LCD VSS pin to ground
- * LCD VCC pin to 5V
- * 10K resistor:
- * ends to +5V and ground
- * wiper to LCD VO pin (pin 3)
-*/
+  /* For LCD Display*/
+  /*  The circuit:
+   * LCD RS pin to digital pin 12
+   * LCD Enable pin to digital pin 11
+   * LCD D4 pin to digital pin 5
+   * LCD D5 pin to digital pin 4
+   * LCD D6 pin to digital pin 3
+   * LCD D7 pin to digital pin 2
+   * LCD R/W pin to ground
+   * LCD VSS pin to ground
+   * LCD VCC pin to 5V
+   * 10K resistor:
+   * ends to +5V and ground
+   * wiper to LCD VO pin (pin 3)
+  */
 
-// initialize the library with the numbers of the interface pins
-LiquidCrystal lcd(8,9,4,5,6,7);
+  // initialize the library with the numbers of the interface pins
+  LiquidCrystal lcd(8,9,4,5,6,7);
 
-/*Servo initialization*/
-  Servo Main;
-  Servo Second;
-  int Main_pin = 12;
-  int Sec_pin = 11;
-  int MO = 0;
-  int MC = 90;
-  int SO = 0;
-  int SC = 100;
+  /*Servo initialization*/
+    Servo Main;
+    Servo Second;
+    int Main_pin = 12;
+    int Sec_pin = 11;
+    int MO = 0;
+    int MC = 90;
+    int SO = 0;
+    int SC = 100;
 
-/* Other Variables */
+  /* Other Variables */
 
-int p = 0 , a = 0, h = 0, pu = 0;  //function counters.
-int button_count = 0;
-int token_status = 0;
-int mode = 0;
-int threshold = 95;  // LDR threshold
+  int p = 0 , a = 0, h = 0, pu = 0;  //function counters.
+  int button_count = 0;
+  int token_status = 0;
+  int mode = 0;
+  int threshold = 95;  // LDR threshold
 
-//Token ka variable is for what?
-//int coin = 31; //insert pin number for coin input signal
+  //Token ka variable is for what?
+  //int coin = 31; //insert pin number for coin input signal
 
-int button1 = 32; //button to press for player 1
-int button1_2 = 33;
-int button2 = 36; //button to press for player 2
-int button2_2 = 37;
-int score1 = 0;
-int score2 = 0;
+  int button1 = 32; //button to press for player 1
+  int button1_2 = 33;
+  int button2 = 36; //button to press for player 2
+  int button2_2 = 37;
+  int score1 = 0;
+  int score2 = 0;
 
-int coin =0; //this is for showing the INSERT COIN TO BEGIN statement only once.
+  int coin =0; //this is for showing the INSERT COIN TO BEGIN statement only once.
 
 
 void setup() {
@@ -280,7 +280,7 @@ int Button_Press(int pin)
         if(digitalRead(pin)==LOW)
         {
            state=1;
-           button_count++;
+           //button_count++;
            Serial.println("ButtonPress");
         }
       }
@@ -373,10 +373,24 @@ void Startup() {
     pu=6;
 }
 
+void Single_Puri()
+{
+  Rotate_CD();
+  Puri();
+  Rotate_CD();
+  Hole();
+  Rotate_CD();
+  Aloo();
+  Rotate_CD();
+  Pani();
+  Rotate_CD();
+}
+
 void Dispense() {
       if(Button_Press(button1))
         {
-          Serial.print("button_count=");
+          button_count++;
+          Serial.print("button_count= ");
           Serial.println(button_count);
 
           if(button_count == 1)
@@ -458,13 +472,13 @@ void Multiplayer() {
             if(Button_Press(button1))
             {
               score1++;
-              Dispense();
+              Single_Puri()
             }
 
             else if(Button_Press(button2))
               {
                 score2++;
-                Dispense();
+                Single_Puri()
               }
 
         }while((score1+score2)%10);
