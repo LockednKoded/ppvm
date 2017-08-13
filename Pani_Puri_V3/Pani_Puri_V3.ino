@@ -1,3 +1,5 @@
+
+
 #include <LiquidCrystal.h>
 #include <Servo.h>
 
@@ -63,10 +65,10 @@
   int threshold = 100;  // LDR threshold
 
   //Token ka variable is for what?
-  int button1 = 32; //button to press for player 1
-  int button1_2 = 33;
-  int button2 = 36; //button to press for player 2
-  int button2_2 = 37;
+  int button1 = 36; //button to press for player 1
+  int button1_2 = 37;
+  int button2 = 32; //button to press for player 2
+  int button2_2 = 33;
   int score1 = 0;
   int score2 = 0;
 
@@ -287,7 +289,14 @@ int Button_Press(int pin)
            Serial.println("ButtonPress");
         }
       }
-      return(state);
+
+     // if(state == 1)
+     // {
+      //  Serial.println("in Button_Press: ");
+        //Serial.println(pin);
+        return(state);
+      //}
+      
   }
 
 int Token_Accept() {
@@ -321,6 +330,7 @@ int Select_Mode() {
   int s1 = 0;
   int s2 = 0;
 
+
   lcd.clear();
   lcd.print("B1 = Single ");
  // lcd.print(s1);
@@ -334,18 +344,26 @@ int Select_Mode() {
     {
       /*lcd.scrollDisplayLeft();
       delay(400); */
-      s1 = Button_Press(button1);
-      s2 = Button_Press(button2);
+      
+     s2 = Button_Press(button2);
+     s1 = Button_Press(button1);
+     
       Serial.println("In the while loop");
-    /*  Serial.println("Waiting for button ");
+    // Serial.println("Waiting for button ");
       Serial.println("Button 1 =  ");
        Serial.println(s1);
-      Serial.println("BUtton 2 = "+s2);
+      Serial.println("BUtton 2 = ");
        Serial.println(s2);
 
       /*if(s1 || s2)
           break; */
     }
+
+    if(s2)
+    {
+      Serial.println(" Button Pressed 2");
+      return 2;
+    } 
 
     if(s1)
     {
@@ -354,11 +372,7 @@ int Select_Mode() {
     }
       
 
-     if(s2)
-    {
-      Serial.println(" Button Pressed 2");
-      return 2;
-    } 
+     
       
 }
 
@@ -486,27 +500,48 @@ void Disp_Score() {
 }
 
 void Multiplayer() {
+
+  int first = 1;
+  int s1 = 0;
+  int s2 = 0;
   score1 = score2 = 0;
   int checkcoin = 0;
   Disp_Score();
-
+  
   do{
+
+    if(first)
+        {
+          lcd.clear();
+          lcd.setCursor(0,0);
+          first = 0;
+          lcd.print("Who goes first?");
+          delay(1000);
+        }
 
       do{
 
-            if(Button_Press(button1))
+        s1 = s2 = 0;
+            
+         s2 = Button_Press(button2);
+         s1 = Button_Press(button1);
+            
+            if(s1)
             {
               score1++;
               Single_Puri();
+             Disp_Score();
             }
 
-            else if(Button_Press(button2))
+            if(s2)
               {
                 score2++;
                 Single_Puri();
+                Disp_Score();
               }
 
-        }while((score1+score2)%10);
+        }while((score1+score2)%4);
+        
 
       lcd.clear();
       lcd.setCursor(0, 0);
