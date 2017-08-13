@@ -1,5 +1,3 @@
-
-
 #include <LiquidCrystal.h>
 #include <Servo.h>
 
@@ -9,18 +7,18 @@
 
   int CD = 23;
 
-  int Hole_Plus = 28;
-  int Hole_Minus = 29;
+  int Hole_Plus = 34;
+  int Hole_Minus = 35;
 
   // do we need this?
-  int Aloo_Plus = 34;
-  int Aloo_Minus = 35;
+  int Aloo_Plus = 28;
+  int Aloo_Minus = 29;
 
   int Aloo_Valve = 26;
 
   int pani = 30;
 
-  int Token = 0;  //Analog Read pin A15
+  int Token = 15;  //Analog Read pin A15
 
   int LED = 13; //Token accepted LED
 
@@ -62,13 +60,15 @@
   int button_count = 0;
   int token_status = 0;
   int mode = 0;
-  int threshold = 100;  // LDR threshold
+  int threshold = 95;  // LDR threshold
 
   //Token ka variable is for what?
-  int button1 = 36; //button to press for player 1
-  int button1_2 = 37;
-  int button2 = 32; //button to press for player 2
-  int button2_2 = 33;
+  //int coin = 31; //insert pin number for coin input signal
+
+  int button1 = 32; //button to press for player 1
+  int button1_2 = 33;
+  int button2 = 36; //button to press for player 2
+  int button2_2 = 37;
   int score1 = 0;
   int score2 = 0;
 
@@ -89,12 +89,10 @@ void setup() {
   pinMode(10, OUTPUT);
   analogWrite(10, 110);
 
-//for lcd backlight
   pinMode(53, OUTPUT);
   digitalWrite(53, LOW);
 
   // doesn't work need to connect to vcc connected servo instead
- // for lcd backlight
   pinMode(52, OUTPUT);
   digitalWrite(52, HIGH);
 
@@ -162,6 +160,7 @@ void setup() {
   digitalWrite(mode,LOW);
   */
 
+  threshold = analogRead(Token)-10;
   Serial.begin(9600);
 
   Serial.println("Everything is setup!");
@@ -169,11 +168,6 @@ void setup() {
   lcd.clear();
   lcd.print("Good to go!");
   delay(2000);
-  
-  threshold = analogRead(Token) -20;
-  Serial.print("Threshold: ");
-  Serial.println(threshold);
-  delay(1000);
 }
 
 void Rotate_CD() {
@@ -289,14 +283,7 @@ int Button_Press(int pin)
            Serial.println("ButtonPress");
         }
       }
-
-     // if(state == 1)
-     // {
-      //  Serial.println("in Button_Press: ");
-        //Serial.println(pin);
-        return(state);
-      //}
-      
+      return(state);
   }
 
 int Token_Accept() {
@@ -330,50 +317,28 @@ int Select_Mode() {
   int s1 = 0;
   int s2 = 0;
 
-
   lcd.clear();
-  lcd.print("B1 = Single ");
- // lcd.print(s1);
+  lcd.print("B1 = Single");
   lcd.setCursor(0,1);
-  lcd.print("B2 = Multi ");
-  //lcd.print(s2);
-  Serial.println("Select mode ");
+  lcd.print("B2 = Multi");
 
     //for(int i = 0; i<36; i++)
     while(!(s1 || s2))
     {
       /*lcd.scrollDisplayLeft();
       delay(400); */
-      
-     s2 = Button_Press(button2);
-     s1 = Button_Press(button1);
-     
-      Serial.println("In the while loop");
-    // Serial.println("Waiting for button ");
-      Serial.println("Button 1 =  ");
-       Serial.println(s1);
-      Serial.println("BUtton 2 = ");
-       Serial.println(s2);
+      s1 = Button_Press(button1);
+      s2 = Button_Press(button2);
 
       /*if(s1 || s2)
           break; */
     }
 
-    if(s2)
-    {
-      Serial.println(" Button Pressed 2");
-      return 2;
-    } 
-
     if(s1)
-    {
-      Serial.println("Button Pressed 1");
       return 1;
-    }
-      
 
-     
-      
+    else if(s2)
+      return 2;
 }
 
 void Startup() {
@@ -462,11 +427,6 @@ void Dispense() {
                       pu++;
                     }
               }
-             lcd.clear();
-             lcd.print("Press B1 for");
-             lcd.setCursor(0,1);
-             lcd.print(" puri: ");
-             lcd.print(button_count +1);
           }
         }while(button_count<6);
 
@@ -482,7 +442,6 @@ void Dispense() {
             lcd.clear();
             lcd.print("That's all folks!");
             Serial.println("Next Plate");
-            delay(2000);
           }
 
       }
@@ -500,48 +459,27 @@ void Disp_Score() {
 }
 
 void Multiplayer() {
-
-  int first = 1;
-  int s1 = 0;
-  int s2 = 0;
   score1 = score2 = 0;
   int checkcoin = 0;
   Disp_Score();
-  
-  do{
 
-    if(first)
-        {
-          lcd.clear();
-          lcd.setCursor(0,0);
-          first = 0;
-          lcd.print("Who goes first?");
-          delay(1000);
-        }
+  do{
 
       do{
 
-        s1 = s2 = 0;
-            
-         s2 = Button_Press(button2);
-         s1 = Button_Press(button1);
-            
-            if(s1)
+            if(Button_Press(button1))
             {
               score1++;
               Single_Puri();
-             Disp_Score();
             }
 
-            if(s2)
+            else if(Button_Press(button2))
               {
                 score2++;
                 Single_Puri();
-                Disp_Score();
               }
 
-        }while((score1+score2)%4);
-        
+        }while((score1+score2)%10);
 
       lcd.clear();
       lcd.setCursor(0, 0);
@@ -550,18 +488,25 @@ void Multiplayer() {
       lcd.setCursor(0, 1);
       lcd.print("continue: ");
 
-      int i = 5000;
-      while((i>=0) && !(checkcoin = Token_Accept()) )
-        {
-          lcd.print((i/1000)+" ");
-          i--;
-          delay(1);
-        }
+      int i=1000;
+      for(int sec = 5;sec>=0;sec-- )
+      {
+        lcd.print(sec+" ");
+        i=1000;
+        while((i>=0) && !(checkcoin = Token_Accept()) )
+          {
+            i--;
+            delay(1);
+          }
+      }
+
     }while(checkcoin);
     lcd.clear();
     lcd.print("GAME OVER");
     delay(2000);
     Disp_Score();
+    delay(2000);
+    lcd.clear();
 
 }
 
