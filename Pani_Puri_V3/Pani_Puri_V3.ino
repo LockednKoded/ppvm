@@ -497,6 +497,7 @@ void Multiplayer() {
       int i=1000;
       for(int sec = 5;sec>=0;sec-- )
       {
+        lcd.setCursor(11,1);
         lcd.print(sec+" ");
         i=1000;
         while((i>=0) && !(checkcoin = Token_Accept()) )
