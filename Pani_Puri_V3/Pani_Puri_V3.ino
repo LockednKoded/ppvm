@@ -49,10 +49,10 @@
     Servo Second;
     int Main_pin = 12;
     int Sec_pin = 11;
-    int MO = 20;
+    int MO = 0;
     int MC = 90;
-    int SO = 100;
-    int SC = 10;
+    int SO = 0;
+    int SC = 100;
 
   /* Other Variables */
 
@@ -63,8 +63,6 @@
   int threshold = 100;  // LDR threshold
 
   //Token ka variable is for what?
-  //int coin = 31; //insert pin number for coin input signal
-
   int button1 = 32; //button to press for player 1
   int button1_2 = 33;
   int button2 = 36; //button to press for player 2
@@ -89,11 +87,12 @@ void setup() {
   pinMode(10, OUTPUT);
   analogWrite(10, 110);
 
-
+//for lcd backlight
   pinMode(53, OUTPUT);
   digitalWrite(53, LOW);
 
   // doesn't work need to connect to vcc connected servo instead
+ // for lcd backlight
   pinMode(52, OUTPUT);
   digitalWrite(52, HIGH);
 
@@ -323,9 +322,12 @@ int Select_Mode() {
   int s2 = 0;
 
   lcd.clear();
-  lcd.print("B1 = Single");
+  lcd.print("B1 = Single ");
+ // lcd.print(s1);
   lcd.setCursor(0,1);
-  lcd.print("B2 = Multi");
+  lcd.print("B2 = Multi ");
+  //lcd.print(s2);
+  Serial.println("Select mode ");
 
     //for(int i = 0; i<36; i++)
     while(!(s1 || s2))
@@ -334,16 +336,30 @@ int Select_Mode() {
       delay(400); */
       s1 = Button_Press(button1);
       s2 = Button_Press(button2);
+      Serial.println("In the while loop");
+    /*  Serial.println("Waiting for button ");
+      Serial.println("Button 1 =  ");
+       Serial.println(s1);
+      Serial.println("BUtton 2 = "+s2);
+       Serial.println(s2);
 
       /*if(s1 || s2)
           break; */
     }
 
     if(s1)
+    {
+      Serial.println("Button Pressed 1");
       return 1;
+    }
+      
 
-    else if(s2)
+     if(s2)
+    {
+      Serial.println(" Button Pressed 2");
       return 2;
+    } 
+      
 }
 
 void Startup() {

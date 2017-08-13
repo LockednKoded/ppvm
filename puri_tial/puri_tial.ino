@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 
- int PD = 22;
+ int PD = 0;
 /*Servo initialization*/
     Servo Main;
     Servo Second;
