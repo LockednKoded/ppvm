@@ -160,7 +160,7 @@ void setup() {
   digitalWrite(mode,LOW);
   */
 
-  threshold = analogRead(Token)-10;
+  //threshold = analogRead(Token)-10;
   Serial.begin(9600);
 
   Serial.println("Everything is setup!");
@@ -168,6 +168,10 @@ void setup() {
   lcd.clear();
   lcd.print("Good to go!");
   delay(2000);
+  threshold = analogRead(Token) -20;
+  Serial.print("Threshold: ");
+  Serial.println(threshold);
+  delay(1000);
 }
 
 void Rotate_CD() {
@@ -337,7 +341,7 @@ int Select_Mode() {
     if(s1)
       return 1;
 
-    else if(s2)
+     if(s2)
       return 2;
 }
 
@@ -471,15 +475,17 @@ void Multiplayer() {
             {
               score1++;
               Single_Puri();
+              Disp_Score();
             }
 
             else if(Button_Press(button2))
               {
                 score2++;
                 Single_Puri();
+                Disp_Score();
               }
 
-        }while((score1+score2)%10);
+        }while((score1+score2)%4);
 
       lcd.clear();
       lcd.setCursor(0, 0);
