@@ -65,10 +65,10 @@
   //Token ka variable is for what?
   //int coin = 31; //insert pin number for coin input signal
 
-  int button1 = 32; //button to press for player 1
-  int button1_2 = 33;
-  int button2 = 36; //button to press for player 2
-  int button2_2 = 37;
+  int button1 = 36;//button to press for player 1
+  int button1_2 = 37;
+  int button2 = 32;//button to press for player 2
+  int button2_2 = 33;
   int score1 = 0;
   int score2 = 0;
 
