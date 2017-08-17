@@ -168,7 +168,7 @@ void setup() {
   lcd.clear();
   lcd.print("Good to go!");
   delay(2000);
-  threshold = analogRead(Token) -20;
+  threshold = (analogRead(Token)*8)/10;
   Serial.print("Threshold: ");
   Serial.println(threshold);
   delay(1000);
