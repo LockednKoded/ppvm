@@ -18,7 +18,7 @@
 
   int pani = 30;
 
-  int Token = 15;  //Analog Read pin A15
+  int Token = 0;  //Analog Read pin A15
 
   int LED = 13; //Token accepted LED
 
@@ -99,6 +99,9 @@ void setup() {
   pinMode(51, OUTPUT);
   digitalWrite(51, LOW);
 
+  pinMode(50,OUTPUT);   //this is for l293d enable high
+  digitalWrite(50,HIGH);
+
   lcd.begin(16, 2);
 
   //yeh button kelia tha
@@ -167,8 +170,10 @@ void setup() {
 
   lcd.clear();
   lcd.print("Good to go!");
+  
+
   delay(2000);
-  threshold = (analogRead(Token)*8)/10;
+  threshold = (analogRead(Token)*70)/100;
   Serial.print("Threshold: ");
   Serial.println(threshold);
   delay(1000);
@@ -183,6 +188,7 @@ void Rotate_CD() {
 
   digitalWrite(CD,HIGH);
   delay(545);
+  
   digitalWrite(CD,LOW);
 }
 
@@ -519,6 +525,8 @@ void Multiplayer() {
 
 void loop() {
 
+ //s token_status=1;
+  
   if (coin ==0)
     {
       lcd.clear();
