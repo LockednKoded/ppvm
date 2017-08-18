@@ -170,7 +170,7 @@ void setup() {
 
   lcd.clear();
   lcd.print("Good to go!");
-  
+
 
   delay(2000);
   threshold = (analogRead(Token)*70)/100;
@@ -188,7 +188,7 @@ void Rotate_CD() {
 
   digitalWrite(CD,HIGH);
   delay(545);
-  
+
   digitalWrite(CD,LOW);
 }
 
@@ -404,7 +404,7 @@ void Dispense() {
               Serial.print("button_count= ");
               Serial.println(button_count);
 
-             if(button_count == 1)
+              if(button_count == 1)
                {
                  Startup();
                }
@@ -436,7 +436,12 @@ void Dispense() {
                       Puri();
                       pu++;
                     }
-              }
+               }
+
+              lcd.clear();
+              lcd.print("Press B1 for");
+              lcd.setCursor(0,1);
+              lcd.print("next puri");
           }
         }while(button_count<6);
 
@@ -526,7 +531,7 @@ void Multiplayer() {
 void loop() {
 
  //s token_status=1;
-  
+
   if (coin ==0)
     {
       lcd.clear();
