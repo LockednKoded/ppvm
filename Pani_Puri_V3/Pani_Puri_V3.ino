@@ -16,9 +16,9 @@
 
   int Aloo_Valve = 26;
 
-  int pani = 30;
+  int pani = 27;
 
-  int Token = 0;  //Analog Read pin A15
+  int Token = 0;  //Analog Read pin A0
 
   int LED = 13; //Token accepted LED
 
@@ -228,17 +228,17 @@ void Hole() {
 
      digitalWrite(Hole_Minus, LOW);
      digitalWrite(Hole_Plus, HIGH);
-     delay(300);
+     delay(280);
 
      digitalWrite(Hole_Minus, HIGH);
      digitalWrite(Hole_Plus, LOW);
-     delay(310);
+     delay(290);
 
 
      digitalWrite(Hole_Minus, LOW);
      digitalWrite(Hole_Plus, LOW);
 
-     delay(300);
+     delay(280);
 
     }
 }
@@ -567,5 +567,8 @@ void loop() {
         Multiplayer();
         coin =0;
       }
+
+      token_status=0;
+      mode=0;
    }
 }
