@@ -498,6 +498,7 @@ void Multiplayer() {
 
         }while((score1+score2)%4);
 
+      delay(1500);
       lcd.clear();
       lcd.setCursor(0, 0);
       checkcoin = 0;
@@ -509,12 +510,13 @@ void Multiplayer() {
       for(int sec = 5;sec>=0;sec-- )
       {
         lcd.setCursor(11,1);
-        lcd.print(sec+" ");
+        //lcd.print(sec+" ");
+        lcd.print(sec);
         i=1000;
-        while((i>=0) && !(checkcoin = Token_Accept()) )
+        while((i>0) && !(checkcoin = Token_Accept()) )
           {
             i--;
-            delay(1);
+            delay(1);    //should we try a smaller delay? 
           }
       }
 
