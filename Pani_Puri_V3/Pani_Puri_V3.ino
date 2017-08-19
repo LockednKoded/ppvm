@@ -196,7 +196,7 @@ void Puri() {
 
   Serial.println("Agitator Begins");
   lcd.clear();
-  lcd.print("Puri");
+  lcd.print("PURI Incoming!");
 
   digitalWrite(PD,HIGH);        //Start Agitator
 
@@ -219,7 +219,9 @@ void Hole() {
   Serial.println("H");
 
   lcd.clear();
-  lcd.print("PRICK");
+  lcd.print("Punching the");
+  lcd.setCursor(0,1);
+  lcd.print("Hole!");
 
   delay(200);
 
@@ -246,7 +248,7 @@ void Hole() {
 void Aloo() {
 
   lcd.clear();
-  lcd.print("ALOO");
+  lcd.print("Stuffing ALOO");
 
   Serial.println("A_V");
 
@@ -267,7 +269,7 @@ void Aloo() {
 void Pani() {
 
   lcd.clear();
-  lcd.print("PAANI");
+  lcd.print("Filling PAANI");
 
   Serial.println("P_On");
   digitalWrite(pani, HIGH);
@@ -330,7 +332,7 @@ int Select_Mode() {
   lcd.clear();
   lcd.print("B1 = Single");
   lcd.setCursor(0,1);
-  lcd.print("B2 = Multi");
+  lcd.print("B2 = Multiplayer");
 
     //for(int i = 0; i<36; i++)
     while(!(s1 || s2))
