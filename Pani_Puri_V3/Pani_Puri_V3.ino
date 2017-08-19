@@ -475,9 +475,10 @@ void Disp_Score() {
 
 void Multiplayer() {
   score1 = score2 = 0;
-  int checkcoin = 0;
+  int checkcoin = 1;
+  int flag=1;
   Disp_Score();
-
+  delay(1000);
   do{
 
       do{
@@ -496,7 +497,10 @@ void Multiplayer() {
                 Disp_Score();
               }
 
-        }while((score1+score2)%4);
+            if ((score1+score2)%4==1)
+              flag=0;
+
+        }while((score1+score2)%4 || flag);
 
       delay(1500);
       lcd.clear();
@@ -519,9 +523,12 @@ void Multiplayer() {
             delay(1);    //should we try a smaller delay?
           }
         if(checkcoin==1)
+        {
+          flag=1;
           break;
+        }
       }
-
+    flag=1;
     }while(checkcoin);
     lcd.clear();
     lcd.print("GAME OVER");
