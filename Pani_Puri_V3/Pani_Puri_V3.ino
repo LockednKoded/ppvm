@@ -516,8 +516,10 @@ void Multiplayer() {
         while((i>0) && !(checkcoin = Token_Accept()) )
           {
             i--;
-            delay(1);    //should we try a smaller delay? 
+            delay(1);    //should we try a smaller delay?
           }
+        if(checkcoin==1)
+          break;
       }
 
     }while(checkcoin);
