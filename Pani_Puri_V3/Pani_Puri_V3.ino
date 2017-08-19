@@ -511,7 +511,7 @@ void Multiplayer() {
       lcd.print("continue: ");
 
       int i=1000;
-      for(int sec = 5;sec>=0;sec-- )
+      for(int sec = 10;sec>=0;sec-- )
       {
         lcd.setCursor(11,1);
         //lcd.print(sec+" ");
