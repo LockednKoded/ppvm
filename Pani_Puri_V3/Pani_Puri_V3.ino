@@ -525,10 +525,10 @@ void Multiplayer() {
         if(checkcoin==1)
         {
           flag=1;
+          Disp_Score();
           break;
         }
       }
-    flag=1;
     }while(checkcoin);
     lcd.clear();
     lcd.print("GAME OVER");
