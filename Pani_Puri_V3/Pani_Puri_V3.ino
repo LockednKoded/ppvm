@@ -49,10 +49,10 @@
     Servo Second;
     int Main_pin = 12;
     int Sec_pin = 11;
-    int MO = 0;
+    int MO = 20;
     int MC = 90;
-    int SO = 0;
-    int SC = 100;
+    int SO = 100;
+    int SC = 10;
 
   /* Other Variables */
 
