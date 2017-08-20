@@ -508,6 +508,8 @@ void Multiplayer() {
       lcd.clear();
       lcd.setCursor(0, 0);
       checkcoin = 0;
+      lcd.clear();
+      lcd.setCursor(0, 0);
       lcd.print("Insert coin to");
       lcd.setCursor(0, 1);
       lcd.print("continue: ");
@@ -515,6 +517,11 @@ void Multiplayer() {
       int i=1000;
       for(int sec = 10;sec>=0;sec-- )
       {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Insert coin to");
+        lcd.setCursor(0, 1);
+        lcd.print("continue: ");
         lcd.setCursor(11,1);
         //lcd.print(sec+" ");
         lcd.print(sec);
