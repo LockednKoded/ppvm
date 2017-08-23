@@ -40,16 +40,21 @@
    * 10K resistor:
    * ends to +5V and ground
    * wiper to LCD VO pin (pin 3)
+   * LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
   */
 
   // initialize the library with the numbers of the interface pins
   LiquidCrystal lcd(8,9,4,5,6,7);
+  int lcd_pot = 10;
+  int lcd_rw = 11
+  int lcd_plus = 14;
+  int lcd_minus = 15;
 
   /*Servo initialization*/
     Servo Main;
     Servo Second;
-    int Main_pin = 46;
-    int Sec_pin = 47;
+    int Main_pin = 2;
+    int Sec_pin = 3;
     /*servo angles*/
     int MO = 20;  
     int MC = 90;
@@ -83,8 +88,15 @@ void setup() {
 
 
   //for lcd pot contrast pin Vo
-  pinMode(10, OUTPUT);
-  analogWrite(10, 110);
+  pinMode(lcd_pot, OUTPUT);
+  analogWrite(lcd_pot, 110);
+  //for some mmore pins of lcd
+  pinMode(lcd_rw, OUTPUT);
+  digitalWrite(lcd_rw, LOW);
+  pinMode(lcd_plus, OUTPUT);
+  digitalWrite(lcd_plus, HIGH);
+  pinMode(lcd_minus, OUTPUT);
+  digitalWrite(lcd_minus, LOW);
 
   pinMode(53, OUTPUT);
   digitalWrite(53, LOW);
