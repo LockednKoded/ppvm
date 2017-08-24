@@ -20,8 +20,12 @@
   int pani = 38;
 
   int Token = 0;  //Analog Read pin A0
+  int Token_VCC = 42;
+  int Token_GND = 43;
 
-  int LED = 42; //Token accepted LED
+  int LED = 13; //Token accepted LED
+
+  int M1_ENABLE = 28;
 
 
   //int Button = 3;
@@ -46,10 +50,10 @@
   // initialize the library with the numbers of the interface pins
   LiquidCrystal lcd(8,9,4,5,6,7);
   int lcd_pot = 10;
-  int lcd_rw = 11
+  int lcd_rw = 11;
   int lcd_plus = 14;
   int lcd_minus = 15;
-
+  
   /*Servo initialization*/
     Servo Main;
     Servo Second;
@@ -108,9 +112,15 @@ void setup() {
   pinMode(51, OUTPUT);
   digitalWrite(51, LOW);
 
+    /*TOKEN POWER*/
+  pinMode(Token_VCC,OUTPUT);
+  digitalWrite(Token_VCC,HIGH);
+  pinMode(Token_GND,OUTPUT);
+  digitalWrite(Token_GND,LOW);
+
   /*this is for l293d enable high for aloo and pricker, the new motor driver needs no enable*/
-  pinMode(50,OUTPUT);   
-  digitalWrite(50,HIGH);
+  pinMode(M1_ENABLE,OUTPUT);   
+  digitalWrite(M1_ENABLE,HIGH);
 
   lcd.begin(16, 2);
 
@@ -527,6 +537,7 @@ void Multiplayer() {
       lcd.clear();
       lcd.setCursor(0, 0);
       checkcoin = 0;
+      digitalWrite(LED,LOW);
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Insert coin to");
@@ -596,12 +607,14 @@ void loop() {
       if(mode == 1)  //single pani puri eater mode
       {
         Dispense();
+        digitalWrite(LED,LOW);
         coin =0;
       }
 
       else if(mode == 2)  //multi player mode
       {
         Multiplayer();
+        digitalWrite(LED,LOW);
         coin =0;
       }
 
