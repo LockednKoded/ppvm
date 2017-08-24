@@ -6,8 +6,8 @@
   int PD_Plus = 22;
   int PD_Minus = 23;
 
-  int CD_Plus = 24;
-  int CD_Minus = 25;
+  int CD_Plus = 25;
+  int CD_Minus = 24;
 
   int Hole_Plus = 26;
   int Hole_Minus = 27;
