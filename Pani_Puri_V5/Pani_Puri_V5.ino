@@ -83,6 +83,8 @@
   int button1_2 = 49;
   int button2 = 50;//button to press for player 2
   int button2_2 = 51;
+   int button3 = 18;//button to press for player 2
+  int button3_2 = 16;
   int score1 = 0;
   int score2 = 0;
 
@@ -116,10 +118,10 @@ void setup() {
   digitalWrite(51, LOW);
 
     /*TOKEN POWER*/
-  pinMode(Token_VCC,OUTPUT);
+  /*pinMode(Token_VCC,OUTPUT);
   digitalWrite(Token_VCC,HIGH);
   pinMode(Token_GND,OUTPUT);
-  digitalWrite(Token_GND,LOW);
+  digitalWrite(Token_GND,LOW);*/
 
   /*this is for l293d enable high for aloo and pricker, the new motor driver needs no enable*/
   pinMode(M1_ENABLE,OUTPUT);   
@@ -138,6 +140,11 @@ void setup() {
   digitalWrite(button1, HIGH);
   pinMode(button2, INPUT);
   digitalWrite(button2, HIGH);
+
+  pinMode(button3_2,OUTPUT);
+  digitalWrite(button3_2,LOW);
+  pinMode(button3, INPUT);
+  digitalWrite(button3, HIGH);
 
   // Servo setup
   Main.attach(Main_pin);
@@ -210,23 +217,22 @@ void setup() {
   int4 = 19
   int5 = 18
 */
-  attachInterrupt(2, Minirotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
+  attachInterrupt(digitalPinToInterrupt(18), Minirotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
   //attachInterrupt(2, Rotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
   //attachInterrupt(2, Rotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
   
-}//setupfunction ends
+}//setup() function ends
 
 void Minirotate_CD()
 {
-  delay(500);
-
+  
   Serial.println("Mini Rotate CD");
   lcd.clear();
   lcd.print("Mini Rotate CD");
 
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
-  delay(5);
+  delayMicroseconds(10000);
 
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,LOW);
