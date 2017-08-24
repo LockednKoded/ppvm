@@ -376,10 +376,17 @@ int Select_Mode() {
     }
 
     if(s1)
+    {
+      Serial.println("Single Player Mode");
       return 1;
+    }
 
      if(s2)
+     {
+      Serial.println("Multiplayer Mode");
       return 2;
+     }
+      
 }
 
 void Startup() {
