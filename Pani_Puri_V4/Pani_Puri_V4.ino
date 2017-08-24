@@ -3,17 +3,17 @@
 
 /* PIN ASSIGNMENT  */
 
-  int PD_Plus = 22;
-  int PD_Minus = 23;
+  int PD_Plus = 30;
+  int PD_Minus = 31;
 
-  int CD_Plus = 25;
-  int CD_Minus = 24;
+  int CD_Plus = 24;
+  int CD_Minus = 25;
 
   int Hole_Plus = 26;
   int Hole_Minus = 27;
  
-  int Aloo_Plus = 30;
-  int Aloo_Minus = 31;
+  int Aloo_Plus = 22;
+  int Aloo_Minus = 23;
 
   int Aloo_Valve = 34;
 
