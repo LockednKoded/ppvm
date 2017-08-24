@@ -11,11 +11,11 @@
   int CD_Plus = 24;
   int CD_Minus = 25;
 
-  int Hole_Plus = 26;
-  int Hole_Minus = 27;
+  int Hole_Plus = 30;
+  int Hole_Minus = 31;
  
-  int Aloo_Plus = 30;
-  int Aloo_Minus = 31;
+  int Aloo_Plus = 26;
+  int Aloo_Minus = 27;
 
   int Aloo_Valve = 34;
 
@@ -218,8 +218,6 @@ void setup() {
   int5 = 18
 */
   attachInterrupt(digitalPinToInterrupt(18), Minirotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
-  //attachInterrupt(2, Rotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
-  //attachInterrupt(2, Rotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
   
 }//setup() function ends
 
