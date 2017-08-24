@@ -160,7 +160,8 @@ void setup() {
 
   //Pani valve setup
   pinMode(pani,OUTPUT);
-  digitalWrite(pani,LOW);
+  //digitalWrite(pani,LOW);
+  digitalWrite(pani,HIGH);  //Relay module is active low.
 
   //LED Setup
   pinMode(LED,OUTPUT);
@@ -288,9 +289,11 @@ void Pani() {
   lcd.print("Filling PAANI");
 
   Serial.println("P_On");
-  digitalWrite(pani, HIGH);
+  //digitalWrite(pani, HIGH);
+  digitalWrite(pani,LOW);
   delay(8000);
-  digitalWrite(pani, LOW );
+  //digitalWrite(pani, LOW );
+  digitalWrite(pani,HIGH);
   Serial.println("P_Off");
 
   lcd.clear();
