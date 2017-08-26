@@ -615,6 +615,13 @@ void Multiplayer() {
     delay(2000);
     Disp_Score();
     delay(2000);
+    if(score1>score2)
+      lcd.print("HOME WINS!");
+    else if(score1<score2)
+      lcd.print("AWAY WINS!");
+    else
+      lcd.print("Draw Match");
+    delay(2000);
     lcd.clear();
 
 }
