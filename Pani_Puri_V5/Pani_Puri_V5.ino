@@ -230,7 +230,7 @@ void Minirotate_CD()
 
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
-  delayMicroseconds(20000);
+  delayMicroseconds(15000);
 
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,LOW);
@@ -246,11 +246,25 @@ void Rotate_CD() {
 
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
-  delay(545);
-  
+  delay(1100);
+    
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,HIGH);
-  delay(100);
+  delay(50);
+
+  digitalWrite(CD_Plus,HIGH);
+  digitalWrite(CD_Minus,LOW);
+  delay(10);
+
+  digitalWrite(CD_Plus,LOW);
+  digitalWrite(CD_Minus,HIGH);
+  delay(5);
+
+  digitalWrite(CD_Plus,HIGH);
+  digitalWrite(CD_Minus,LOW);
+  delay(5);
+
+  
   
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,LOW);
