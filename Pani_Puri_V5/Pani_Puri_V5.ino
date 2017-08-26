@@ -22,8 +22,8 @@
   int pani = 38;
 
   int Token = 0;  //Analog Read pin A0
-  int Token_VCC = 42;
-  int Token_GND = 43;
+/*  int Token_VCC = 42;
+  int Token_GND = 43; */
 
   int LED = 13; //Token accepted LED
 
@@ -225,12 +225,12 @@ void Minirotate_CD()
 {
   
   Serial.println("Mini Rotate CD");
-  lcd.clear();
-  lcd.print("Mini Rotate CD");
+  /*lcd.clear();
+  lcd.print("Mini Rotate CD"); */
 
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
-  delayMicroseconds(10000);
+  delayMicroseconds(20000);
 
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,LOW);
@@ -247,7 +247,11 @@ void Rotate_CD() {
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
   delay(545);
-
+  
+  digitalWrite(CD_Plus,LOW);
+  digitalWrite(CD_Minus,HIGH);
+  delay(100);
+  
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,LOW);
 }
