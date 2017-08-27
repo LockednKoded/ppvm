@@ -221,7 +221,7 @@ void setup() {
   int4 = 19
   int5 = 18
 */
-  attachInterrupt(digitalPinToInterrupt(18), Minirotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
+  attachInterrupt(digitalPinToInterrupt(18), Minirotate_CD, CHANGE); //button to manually rotate CD. Attach to pin 21
 
   Timer1.initialize(8000000);
   Timer1.attachInterrupt(agitate);
