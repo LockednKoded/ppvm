@@ -1,5 +1,4 @@
-/*attempting interrupts*/
-
+#include <TimerOne.h>
 #include <LiquidCrystal.h>
 #include <Servo.h>
 

@@ -5,7 +5,7 @@
 #include <LiquidCrystal.h>
 #include <Servo.h>
 
-/* PIN ASSIGNMENT  */
+/* PIN ASSIGNMENT p */
 
   int PD_Plus = 26;
   int PD_Minus = 27;
@@ -21,7 +21,7 @@
 
   int Aloo_Valve = 34;
 
-  int pani = 38;
+  int pani = 17;
 
   int Token = 0;  //Analog Read pin A0
 /*  int Token_VCC = 42;
