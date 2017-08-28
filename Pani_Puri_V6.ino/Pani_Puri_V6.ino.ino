@@ -332,7 +332,7 @@ void Hole() {
   lcd.setCursor(0,1);
   lcd.print("Hole!");
 
-  delay(200);
+  delay(3000);
 
   for ( int i =0; i<3 ;i++)
     {

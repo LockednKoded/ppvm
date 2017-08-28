@@ -34,6 +34,7 @@
   int M1_ENABLE = 28;  //enable pin for motor driver
 
   int f_agitate = 0;    //flag for the agitator
+  int agitate_time = 16;  //time to set for agitator time
 
 
   //int Button = 3;
@@ -225,7 +226,7 @@ void setup() {
 */
   attachInterrupt(digitalPinToInterrupt(18), Minirotate_CD, RISING); //button to manually rotate CD. Attach to pin 21
 
-  Timer1.initialize(8000000);
+  Timer1.initialize(agitate_time*1000000);
   Timer1.attachInterrupt(agitate);
   
 }//setup() function ends
@@ -288,6 +289,7 @@ void agitate()
   digitalWrite(PD_Minus,LOW);
   Serial.println("Agitator started");
   f_agitate = 1;
+  agitate_time  = 8;
   }
    
 
@@ -297,6 +299,7 @@ void agitate()
   digitalWrite(PD_Minus,LOW);
   Serial.println("Agitator stopped");
   f_agitate = 0;
+  agitate_time = 16;
   }
   
 }
@@ -334,7 +337,7 @@ void Hole() {
   lcd.setCursor(0,1);
   lcd.print("Hole!");
 
-  delay(200);
+  delay(3000);
 
   for ( int i =0; i<3 ;i++)
     {
