@@ -21,7 +21,7 @@
   int Aloo_Plus = 22;
   int Aloo_Minus = 23;
 
-  int Aloo_Valve = 21;
+  int Aloo_Valve = 43;
 
   int pani = 47;    // RIP Pin 17
 
