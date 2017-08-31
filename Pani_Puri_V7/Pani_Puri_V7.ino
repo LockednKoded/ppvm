@@ -359,6 +359,15 @@ void Hole() {
     }
 }
 
+void Aloo_Start()
+  
+}
+
+void Aloo_Stop()
+{
+  
+}
+
 void Aloo() {
 
   lcd.clear();
