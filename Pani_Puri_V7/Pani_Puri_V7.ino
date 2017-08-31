@@ -21,9 +21,9 @@
   int Aloo_Plus = 22;
   int Aloo_Minus = 23;
 
-  int Aloo_Valve = 43;
+  int Aloo_Valve = 21;
 
-  int pani = 21;
+  int pani = 47;    // RIP Pin 17
 
   int Token = 0;  //Analog Read pin A0
 /*  int Token_VCC = 42;
