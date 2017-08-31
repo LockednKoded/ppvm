@@ -21,7 +21,7 @@
   int Aloo_Plus = 22;
   int Aloo_Minus = 23;
 
-  int Aloo_Valve = 34;
+  int Aloo_Valve = 43;
 
   int pani = 21;
 
