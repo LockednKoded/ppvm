@@ -23,7 +23,7 @@
 
   int Aloo_Valve = 34;
 
-  int pani = 38;
+  int pani = 17;
 
   int Token = 0;  //Analog Read pin A0
 /*  int Token_VCC = 42;
