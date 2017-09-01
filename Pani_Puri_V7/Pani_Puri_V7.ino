@@ -36,6 +36,8 @@
   int f_agitate = 0;    //flag for the agitator
   int agitate_time = 16;  //time to set for agitator time
 
+  int num_pricks = 2; //number of times the prick happens
+
 
   //int Button = 3;
 
@@ -256,7 +258,7 @@ void Rotate_CD() {
 
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
-  delay(1100);
+  delay(1150);
     
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,HIGH);
@@ -289,17 +291,23 @@ void agitate()
   digitalWrite(PD_Minus,LOW);
   Serial.println("Agitator started");
   f_agitate = 1;
-  agitate_time  = 8;
+  //agitate_time  = 8;
   }
-   
 
-  else
+  else if(f_agitate == 1)
   {
     digitalWrite(PD_Plus,LOW);       // Stop Agitator
   digitalWrite(PD_Minus,LOW);
   Serial.println("Agitator stopped");
-  f_agitate = 0;
-  agitate_time = 16;
+  f_agitate = 2;
+  //agitate_time = 16;
+   
+  }
+   
+
+  else if(f_agitate == 2)  //keep it stopped for 2 cycles
+  {
+     f_agitate = 0;
   }
   
 }
@@ -339,7 +347,7 @@ void Hole() {
 
   delay(2000);
 
-  for ( int i =0; i<3 ;i++)
+  for ( int i =0; i<num_pricks ;i++)
     {
 
      digitalWrite(Hole_Minus, LOW);
