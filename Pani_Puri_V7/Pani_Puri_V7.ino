@@ -90,7 +90,7 @@
   int button1_2 = 49;
   int button2 = 50;//button to press for player 2
   int button2_2 = 51;
-   int button3 = 18;//button to press for player 2
+  int button3 = 18;//button to press for player 2
   int button3_2 = 16;
   int score1 = 0;
   int score2 = 0;
@@ -337,24 +337,24 @@ void Hole() {
   lcd.setCursor(0,1);
   lcd.print("Hole!");
 
-  delay(3000);
+  delay(2000);
 
   for ( int i =0; i<3 ;i++)
     {
 
      digitalWrite(Hole_Minus, LOW);
      digitalWrite(Hole_Plus, HIGH);
-     delay(280);
+     delay(260);
 
      digitalWrite(Hole_Minus, HIGH);
      digitalWrite(Hole_Plus, LOW);
-     delay(290);
+     delay(270);
 
 
      digitalWrite(Hole_Minus, LOW);
      digitalWrite(Hole_Plus, LOW);
 
-     delay(280);
+     delay(260);
 
     }
 }
