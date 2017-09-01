@@ -38,6 +38,8 @@
 
   int num_pricks = 2; //number of times the prick happens
 
+  int aloo_delay = 5000; // 10000 for aloo, 5000 for boondi
+
 
   //int Button = 3;
 
@@ -94,6 +96,7 @@
   int button2_2 = 51;
   int button3 = 18;//button to press for player 2
   int button3_2 = 16;
+
   int score1 = 0;
   int score2 = 0;
 
@@ -383,7 +386,7 @@ void Aloo() {
   Serial.println("A_On");
   digitalWrite(Aloo_Plus,HIGH);
   digitalWrite(Aloo_Minus,LOW);
-  delay(10000);
+  delay(aloo_delay);
   digitalWrite(Aloo_Plus,LOW);
   digitalWrite(Aloo_Minus,LOW);
   Serial.println("A_Off");
@@ -473,10 +476,17 @@ int Select_Mode() {
     }
 
     if(s1)
-      return 1;
+      {
+        Serial.println("Single Player Mode");
+        return 1;
+      }
 
      if(s2)
-      return 2;
+       {
+          Serial.println("MultiPlayer Mode");
+          return 2;
+       }
+      
 }
 
 void Startup() {
@@ -671,6 +681,7 @@ void Multiplayer() {
     delay(2000);
     Disp_Score();
     delay(2000);
+    lcd.clear();
     if(score1>score2)
       lcd.print("HOME WINS!");
     else if(score1<score2)
