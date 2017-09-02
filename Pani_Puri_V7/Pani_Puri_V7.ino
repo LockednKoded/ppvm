@@ -38,7 +38,9 @@
 
   int num_pricks = 2; //number of times the prick happens
 
-  int aloo_delay = 5000; // 10000 for aloo, 5000 for boondi
+  int aloo_delay = 4500; // 75000 for aloo, x000 for boondi
+
+  int pani_delay = 4000;
 
 
   //int Button = 3;
@@ -261,7 +263,7 @@ void Rotate_CD() {
 
   digitalWrite(CD_Plus,HIGH);
   digitalWrite(CD_Minus,LOW);
-  delay(1150);
+  delay(1125);
     
   digitalWrite(CD_Plus,LOW);
   digitalWrite(CD_Minus,HIGH);
@@ -401,7 +403,7 @@ void Pani() {
   Serial.println("P_On");
   //digitalWrite(pani, HIGH);
   digitalWrite(pani,LOW);
-  delay(8000);
+  delay(pani_delay);
   //digitalWrite(pani, LOW );
   digitalWrite(pani,HIGH);
   Serial.println("P_Off");
