@@ -375,7 +375,8 @@ void Hole() {
 void Aloo() {
 
   lcd.clear();
-  lcd.print("Stuffing ALOO");
+  //lcd.print("Stuffing ALOO");
+  lcd.print("Stuffing BOONDI");
 
   Serial.println("A_V");
 
@@ -407,6 +408,8 @@ void Pani() {
   //digitalWrite(pani, LOW );
   digitalWrite(pani,HIGH);
   Serial.println("P_Off");
+
+  delay(1000); // so that pani doesn't fall on the CD when rotating
 
   lcd.clear();
   lcd.print("Ready!");
