@@ -38,7 +38,7 @@
 
   int num_pricks = 2; //number of times the prick happens
 
-  int aloo_delay = 4500; // 75000 for aloo, x000 for boondi
+  int aloo_delay = 500; // 75000 for aloo, x000 for boondi
 
   int pani_delay = 4000;
 
